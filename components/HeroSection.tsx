@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { Sparkles, ChevronRight, Zap } from "lucide-react";
+import { SplineScene } from "@/components/ui/splite";
+import { Spotlight } from "@/components/ui/spotlight";
 
 /* ─────────────────────────────────────────
    WebGL-style volumetric canvas
@@ -224,7 +226,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative flex items-center justify-center overflow-hidden"
+      className="relative overflow-hidden"
       style={{ minHeight: "100svh" }}
     >
       {/* Atmospheric WebGL-style canvas */}
@@ -233,185 +235,190 @@ export default function HeroSection() {
       {/* Radial vignette */}
       <div className="absolute inset-0 pointer-events-none" style={{
         zIndex: 1,
-        background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 20%, rgba(2,2,8,0.7) 100%)",
+        background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 20%, rgba(2,2,8,0.6) 100%)",
       }} />
 
-      {/* Bottom fade into page */}
+      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none" style={{
         zIndex: 2,
         background: "linear-gradient(to top, #050508 0%, transparent 100%)",
       }} />
 
-      {/* Floating stat badges */}
-      <StatBadge value="900K+" label="Games Indexed"    color="#7c3aed" delay={1.2} pos={{ left: "4%",  top: "28%" }} />
-      <StatBadge value="Live"  label="Price Tracking"   color="#06b6d4" delay={1.4} pos={{ left: "4%",  top: "58%" }} />
-      <StatBadge value="GPT-4o" label="AI Engine"       color="#a78bfa" delay={1.6} pos={{ right: "4%", top: "22%" }} />
-      <StatBadge value="Free"  label="Always Free"      color="#ec4899" delay={1.8} pos={{ right: "4%", top: "62%" }} />
+      {/* ── Full-screen split layout ── */}
+      <div className="relative flex h-screen" style={{ zIndex: 10 }}>
 
-      {/* ── Main content ── */}
-      <motion.div
-        style={{ rotateX: rX, rotateY: rY, transformStyle: "preserve-3d", zIndex: 10 }}
-        className="relative text-center px-4 max-w-6xl mx-auto"
-      >
-        {/* Eyebrow */}
+        {/* LEFT — 55% text, vertically + horizontally centered */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="flex justify-center mb-8"
+          style={{ rotateX: rX, rotateY: rY, transformStyle: "preserve-3d" }}
+          className="w-[55%] flex flex-col justify-center items-center text-center pl-8 pr-8"
         >
-          <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border text-xs font-bold tracking-[0.15em] uppercase"
-            style={{
-              background: "rgba(124,58,237,0.08)",
-              borderColor: "rgba(124,58,237,0.3)",
-              color: "#a78bfa",
-              backdropFilter: "blur(12px)",
-              boxShadow: "0 0 30px rgba(124,58,237,0.15)",
-            }}
+          {/* Eyebrow */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="flex justify-center mb-6"
           >
-            <motion.span
-              animate={{ opacity: [1, 0.3, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1.5 h-1.5 rounded-full bg-violet-400"
-              style={{ boxShadow: "0 0 8px #a78bfa" }}
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border text-xs font-bold tracking-[0.15em] uppercase"
+              style={{
+                background: "rgba(124,58,237,0.08)",
+                borderColor: "rgba(124,58,237,0.3)",
+                color: "#a78bfa",
+                backdropFilter: "blur(12px)",
+                boxShadow: "0 0 30px rgba(124,58,237,0.15)",
+              }}
+            >
+              <motion.span
+                animate={{ opacity: [1, 0.3, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="w-1.5 h-1.5 rounded-full bg-violet-400"
+                style={{ boxShadow: "0 0 8px #a78bfa" }}
+              />
+              <Sparkles className="w-3.5 h-3.5" />
+              AI-Powered Game Discovery
+            </div>
+          </motion.div>
+
+          {/* Headline */}
+          <div className="overflow-hidden mb-1">
+            <motion.div
+              initial={{ y: "110%" }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.1, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="font-black tracking-tighter text-white"
+              style={{ fontSize: "clamp(4rem, 8vw, 9rem)", lineHeight: 0.92, letterSpacing: "-0.03em" }}
+            >
+              DISCOVER
+            </motion.div>
+          </div>
+          <div className="overflow-hidden mb-1">
+            <motion.div
+              initial={{ y: "110%" }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.2, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="font-black tracking-tighter"
+              style={{
+                fontSize: "clamp(4rem, 8vw, 9rem)",
+                lineHeight: 0.92,
+                letterSpacing: "-0.03em",
+                background: "linear-gradient(135deg, #a78bfa 0%, #06b6d4 50%, #ec4899 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                filter: "drop-shadow(0 0 40px rgba(124,58,237,0.5))",
+              }}
+            >
+              YOUR GAME
+            </motion.div>
+          </div>
+          <div className="overflow-hidden mb-8">
+            <motion.div
+              initial={{ y: "110%" }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="font-black tracking-tighter text-white/20"
+              style={{ fontSize: "clamp(4rem, 8vw, 9rem)", lineHeight: 0.92, letterSpacing: "-0.03em" }}
+            >
+              UNIVERSE
+            </motion.div>
+          </div>
+
+          {/* Subtext */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="text-slate-400 max-w-lg mb-8 leading-relaxed text-sm lg:text-base text-center"
+          >
+            Real-time prices, AI recommendations, trailers and Metacritic scores
+            for <span className="text-violet-300 font-semibold">900,000+ games</span> — all in one futuristic dashboard.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.7 }}
+            className="flex flex-wrap justify-center gap-3 mb-10"
+          >
+            <Link href="/explore">
+              <motion.button
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                className="group relative flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-white overflow-hidden"
+                style={{
+                  background: "linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)",
+                  boxShadow: "0 0 40px rgba(124,58,237,0.45), inset 0 1px 0 rgba(255,255,255,0.15)",
+                }}
+              >
+                <motion.span
+                  animate={{ x: ["-120%", "220%"] }}
+                  transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 2 }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent skew-x-12 pointer-events-none"
+                />
+                <Sparkles className="w-4 h-4 relative z-10" />
+                <span className="relative z-10 uppercase tracking-widest text-xs font-black">Explore Games</span>
+                <ChevronRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+            </Link>
+            <Link href="#ai-chat">
+              <motion.button
+                whileHover={{ scale: 1.04, y: -2, boxShadow: "0 0 30px rgba(6,182,212,0.3)" }}
+                whileTap={{ scale: 0.97 }}
+                className="flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-black text-xs tracking-widest uppercase"
+                style={{
+                  background: "rgba(6,182,212,0.06)",
+                  border: "1px solid rgba(6,182,212,0.3)",
+                  color: "#67e8f9",
+                }}
+              >
+                <Zap className="w-4 h-4" />
+                Ask the AI
+              </motion.button>
+            </Link>
+          </motion.div>
+
+          {/* Stats row */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.1 }}
+            className="flex items-center justify-center gap-8"
+          >
+            {[
+              { value: "900K+", label: "Games" },
+              { value: "Live",  label: "Prices" },
+              { value: "Free",  label: "Forever" },
+            ].map(({ value, label }, i) => (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.15 + i * 0.08 }}
+              >
+                <p className="text-base font-black text-white leading-none">{value}</p>
+                <p className="text-[10px] text-slate-600 font-semibold tracking-widest uppercase mt-1">{label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* RIGHT — 40% robot */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.4, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="w-[45%] h-full relative"
+          style={{ zIndex: 5 }}
+        >
+          <div className="w-full h-full" style={{ mixBlendMode: 'lighten' }}>
+            <SplineScene
+              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+              className="w-full h-full"
             />
-            <Sparkles className="w-3.5 h-3.5" />
-            AI-Powered Game Discovery
           </div>
         </motion.div>
-
-        {/* ── MASSIVE headline — EV2 style ── */}
-        <div className="overflow-hidden mb-2">
-          <motion.div
-            initial={{ y: "110%" }}
-            animate={{ y: 0 }}
-            transition={{ delay: 0.1, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-black tracking-tighter text-white"
-            style={{ fontSize: "clamp(3.5rem, 11vw, 9rem)", lineHeight: 0.88, letterSpacing: "-0.03em" }}
-          >
-            DISCOVER
-          </motion.div>
-        </div>
-        <div className="overflow-hidden mb-2">
-          <motion.div
-            initial={{ y: "110%" }}
-            animate={{ y: 0 }}
-            transition={{ delay: 0.2, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-black tracking-tighter"
-            style={{
-              fontSize: "clamp(3.5rem, 11vw, 9rem)",
-              lineHeight: 0.88,
-              letterSpacing: "-0.03em",
-              background: "linear-gradient(135deg, #a78bfa 0%, #06b6d4 50%, #ec4899 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              filter: "drop-shadow(0 0 60px rgba(124,58,237,0.6))",
-            }}
-          >
-            YOUR GAME
-          </motion.div>
-        </div>
-        <div className="overflow-hidden mb-10">
-          <motion.div
-            initial={{ y: "110%" }}
-            animate={{ y: 0 }}
-            transition={{ delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-black tracking-tighter text-white/20"
-            style={{ fontSize: "clamp(3.5rem, 11vw, 9rem)", lineHeight: 0.88, letterSpacing: "-0.03em" }}
-          >
-            UNIVERSE
-          </motion.div>
-        </div>
-
-        {/* Subtext */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed"
-          style={{ fontSize: "clamp(0.9rem, 1.8vw, 1.05rem)" }}
-        >
-          Real-time prices, AI recommendations, trailers and Metacritic scores
-          for <span className="text-violet-300 font-semibold">900,000+ games</span> — all in one futuristic dashboard.
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.7 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-        >
-          {/* Primary */}
-          <Link href="/explore">
-            <motion.button
-              whileHover={{ scale: 1.04, y: -3 }}
-              whileTap={{ scale: 0.97 }}
-              className="group relative flex items-center justify-center gap-3 px-10 py-4 rounded-xl font-bold text-white text-sm tracking-wide overflow-hidden"
-              style={{
-                background: "linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)",
-                boxShadow: "0 0 40px rgba(124,58,237,0.5), inset 0 1px 0 rgba(255,255,255,0.15)",
-                letterSpacing: "0.06em",
-              }}
-            >
-              {/* Shimmer */}
-              <motion.span
-                animate={{ x: ["-120%", "220%"] }}
-                transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 2 }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent skew-x-12 pointer-events-none"
-              />
-              <Sparkles className="w-4 h-4 relative z-10" />
-              <span className="relative z-10 uppercase tracking-widest text-xs font-black">Explore Games</span>
-              <ChevronRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-          </Link>
-
-          {/* Secondary */}
-          <Link href="#ai-chat">
-            <motion.button
-              whileHover={{ scale: 1.04, y: -3, boxShadow: "0 0 30px rgba(6,182,212,0.35)" }}
-              whileTap={{ scale: 0.97 }}
-              className="flex items-center justify-center gap-3 px-10 py-4 rounded-xl font-black text-xs tracking-widest uppercase"
-              style={{
-                background: "rgba(6,182,212,0.06)",
-                border: "1px solid rgba(6,182,212,0.3)",
-                color: "#67e8f9",
-                letterSpacing: "0.1em",
-              }}
-            >
-              <Zap className="w-4 h-4" />
-              Ask the AI
-            </motion.button>
-          </Link>
-        </motion.div>
-
-        {/* Stats row */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.1 }}
-          className="flex items-center justify-center gap-8 sm:gap-12"
-        >
-          {[
-            { value: "900K+",   label: "Games" },
-            { value: "GPT-4o",  label: "AI Model" },
-            { value: "Live",    label: "Prices" },
-            { value: "Free",    label: "Forever" },
-          ].map(({ value, label }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.15 + i * 0.08 }}
-              className="text-center"
-            >
-              <p className="text-lg font-black text-white leading-none">{value}</p>
-              <p className="text-[10px] text-slate-600 font-semibold tracking-widest uppercase mt-1">{label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
+      </div>
 
       {/* Scroll indicator */}
       <motion.div

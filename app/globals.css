@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* ── Spline scene — force transparent bg so it blends with page ── */
+spline-viewer,
+spline-viewer canvas,
+canvas[data-engine] {
+  background: transparent !important;
+}
+
+
 /* ── Prevent Dark Reader hydration mismatches ──
    By declaring these CSS vars ourselves, Dark Reader won't inject
    conflicting values that differ between SSR and client render. */

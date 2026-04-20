@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import Navbar from "@/components/Navbar";
 import CustomCursor from "@/components/CustomCursor";
+import IntroScreen from "@/components/IntroScreen";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
       </head>
       <body className="noise-overlay antialiased" suppressHydrationWarning>
         <Providers>
+          <IntroScreen />
           <CustomCursor />
           <div className="relative min-h-screen flex flex-col" suppressHydrationWarning>
             {/* Grid background */}

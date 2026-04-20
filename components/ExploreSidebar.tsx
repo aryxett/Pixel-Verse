@@ -215,8 +215,14 @@ export default function ExploreSidebar({
 
   if (!data) return null;
 
-  const visibleGenres   = showAllGenres   ? data.genres   : data.genres.slice(0, 8);
-  const visiblePlatforms = showAllPlatforms ? data.platforms : data.platforms.slice(0, 6);
+  // Safely destructure with fallbacks in case API returns partial data
+  const newReleases = data.newReleases ?? { last30: { count: 0, games: [] }, thisWeek: { count: 0, games: [] }, nextWeek: { count: 0, games: [] } };
+  const top = data.top ?? { bestYear: { count: 0, games: [] }, popular2025: { count: 0, games: [] }, allTime: { count: 0, games: [] } };
+  const genres = data.genres ?? [];
+  const platforms = data.platforms ?? [];
+
+  const visibleGenres    = showAllGenres    ? genres    : genres.slice(0, 8);
+  const visiblePlatforms = showAllPlatforms ? platforms : platforms.slice(0, 6);
 
   return (
     <div className="space-y-0.5 pb-8">
@@ -227,8 +233,8 @@ export default function ExploreSidebar({
       <SidebarItem
         icon={<Star className="w-4 h-4" />}
         label="Last 30 days"
-        count={data.newReleases.last30.count}
-        games={data.newReleases.last30.games}
+        count={newReleases.last30.count}
+        games={newReleases.last30.games}
         active={activeSection === "last30"}
         onClick={() => onSectionChange("last30", {
           ordering: "-added",
@@ -239,8 +245,8 @@ export default function ExploreSidebar({
       <SidebarItem
         icon={<Flame className="w-4 h-4" />}
         label="This week"
-        count={data.newReleases.thisWeek.count}
-        games={data.newReleases.thisWeek.games}
+        count={newReleases.thisWeek.count}
+        games={newReleases.thisWeek.games}
         active={activeSection === "thisWeek"}
         onClick={() => onSectionChange("thisWeek", {
           ordering: "-added",
@@ -251,8 +257,8 @@ export default function ExploreSidebar({
       <SidebarItem
         icon={<Calendar className="w-4 h-4" />}
         label="Next week"
-        count={data.newReleases.nextWeek.count}
-        games={data.newReleases.nextWeek.games}
+        count={newReleases.nextWeek.count}
+        games={newReleases.nextWeek.games}
         active={activeSection === "nextWeek"}
         onClick={() => onSectionChange("nextWeek", {
           ordering: "-added",
@@ -267,8 +273,8 @@ export default function ExploreSidebar({
       <SidebarItem
         icon={<Trophy className="w-4 h-4" />}
         label={`Best of ${new Date().getFullYear()}`}
-        count={data.top.bestYear.count}
-        games={data.top.bestYear.games}
+        count={top.bestYear.count}
+        games={top.bestYear.games}
         active={activeSection === "bestYear"}
         onClick={() => onSectionChange("bestYear", {
           ordering: "-metacritic",
@@ -280,8 +286,8 @@ export default function ExploreSidebar({
       <SidebarItem
         icon={<TrendingUp className="w-4 h-4" />}
         label="Popular in 2025"
-        count={data.top.popular2025.count}
-        games={data.top.popular2025.games}
+        count={top.popular2025.count}
+        games={top.popular2025.games}
         active={activeSection === "popular2025"}
         onClick={() => onSectionChange("popular2025", {
           ordering: "-added",
@@ -292,8 +298,8 @@ export default function ExploreSidebar({
       <SidebarItem
         icon={<Crown className="w-4 h-4" />}
         label="All time top 250"
-        count={data.top.allTime.count}
-        games={data.top.allTime.games}
+        count={top.allTime.count}
+        games={top.allTime.games}
         active={activeSection === "allTime"}
         onClick={() => onSectionChange("allTime", {
           ordering: "-metacritic",
@@ -340,13 +346,13 @@ export default function ExploreSidebar({
           </span>
         </motion.div>
       ))}
-      {data.platforms.length > 6 && (
+      {platforms.length > 6 && (
         <button
           onClick={() => setShowAllPlatforms(!showAllPlatforms)}
           className="flex items-center gap-2 px-3 py-1.5 text-xs text-slate-600 hover:text-slate-400 transition-colors w-full"
         >
           {showAllPlatforms ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-          {showAllPlatforms ? "Show less" : `Show ${data.platforms.length - 6} more`}
+          {showAllPlatforms ? "Show less" : `Show ${platforms.length - 6} more`}
         </button>
       )}
 
@@ -361,13 +367,13 @@ export default function ExploreSidebar({
           delay={0.36 + i * 0.03}
         />
       ))}
-      {data.genres.length > 8 && (
+      {genres.length > 8 && (
         <button
           onClick={() => setShowAllGenres(!showAllGenres)}
           className="flex items-center gap-2 px-3 py-1.5 text-xs text-slate-600 hover:text-slate-400 transition-colors w-full"
         >
           {showAllGenres ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-          {showAllGenres ? "Hide" : `Show all ${data.genres.length} genres`}
+          {showAllGenres ? "Hide" : `Show all ${genres.length} genres`}
         </button>
       )}
 
