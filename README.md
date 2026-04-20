@@ -1,40 +1,296 @@
-<<<<<<< HEAD
-# Pixel-Verse
-=======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎮 PixelVerse — AI Gaming Assistant
 
-## Getting Started
+Your AI-powered gaming companion. Discover games, build your gamer profile, and get personalized recommendations powered by GPT-4o-mini.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-16.2.4-black)
+![React](https://img.shields.io/badge/React-19.2.4-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8)
+![License](https://img.shields.io/badge/License-MIT-green)
 
+---
+
+## ✨ Features
+
+- 🤖 **AI Chat Assistant** - Natural language game recommendations powered by GPT-4o-mini
+- ⚡ **Decision Engine** - Smart game matching based on time, mood, and device
+- 🔍 **Game Discovery** - Explore 500,000+ games from RAWG.io database
+- 📊 **Gamer Profile** - Personalized gaming personality analysis
+- 💰 **Price Comparison** - Compare prices across multiple stores
+- 🎨 **Beautiful UI** - Modern design with 3D animations and smooth transitions
+- 🌙 **Dark Theme** - Eye-friendly dark mode with glassmorphism effects
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 20+
+- npm/yarn/pnpm
+- Git
+
+### Installation
+
+1. **Clone the repository**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd gaming-assistant
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install dependencies**
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Set up environment variables**
+```bash
+cp .env.local.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Edit `.env.local` and add your API keys:
+```env
+# Choose one AI provider
+OPENAI_API_KEY=sk-your-key-here
+# OR
+GITHUB_TOKEN=ghp_your-token-here
 
-## Learn More
+# Required for Explore & Decision Engine
+RAWG_API_KEY=your-rawg-key-here
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Run development server**
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. **Open your browser**
+```
+http://localhost:3000
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📚 Documentation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **[Complete Documentation](./DOCUMENTATION.md)** - Full project documentation
+- **[Technical Guide](./TECHNICAL_GUIDE.md)** - Deep dive into architecture
+- **[API Reference](./API_REFERENCE.md)** - Complete API documentation
+- **[Hindi Documentation](./README_HI.md)** - हिंदी में डॉक्यूमेंटेशन
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
->>>>>>> 3976b16 (Initial commit from Create Next App)
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Next.js 16** - React framework with App Router
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS 4** - Styling
+- **Framer Motion** - Animations
+
+### Backend
+- **Next.js API Routes** - Serverless functions
+- **MongoDB** (Optional) - Database
+- **OpenAI/GitHub Models** - AI recommendations
+
+### External APIs
+- **RAWG.io** - Game database (500,000+ games)
+- **Steam API** - Game details & pricing
+- **OpenAI API** - AI recommendations
+
+---
+
+## 🎯 Key Features Explained
+
+### 1. AI Chat Assistant
+Ask questions in natural language and get intelligent game recommendations.
+
+```
+You: "I want something relaxing tonight"
+AI: "Try Stardew Valley - perfect for unwinding..."
+```
+
+### 2. Decision Engine
+Get matched with games based on:
+- ⏰ **Time Available** (30min - 5h+)
+- 😌 **Current Mood** (7 moods)
+- 💻 **Device** (Low-end, Mid-range, High-end)
+
+### 3. Gamer Profile
+Discover your gaming personality:
+- 🎭 Archetype (e.g., "The Challenger")
+- 💪 Strengths
+- 📊 Play style scores
+- 🎮 Personalized recommendations
+
+---
+
+## 📁 Project Structure
+
+```
+gaming-assistant/
+├── app/                    # Next.js App Router
+│   ├── api/               # API endpoints
+│   ├── explore/           # Explore page
+│   ├── game/              # Game details
+│   └── profile/           # User profile
+├── components/            # React components
+│   ├── ui/               # Reusable UI components
+│   ├── AIChat.tsx        # AI chat interface
+│   └── DecisionEngine.tsx # Decision engine
+├── lib/                   # Utilities
+│   ├── ai.ts             # AI engine
+│   ├── games.ts          # Game data layer
+│   ├── rawg.ts           # RAWG API client
+│   └── steam.ts          # Steam API client
+└── data/                  # Static data
+    ├── games.json        # Local games
+    └── moods.json        # Mood definitions
+```
+
+---
+
+## 🔑 Environment Variables
+
+### Required
+
+```env
+# AI Provider (choose one)
+OPENAI_API_KEY=sk-...        # OpenAI API key
+GITHUB_TOKEN=ghp_...         # GitHub token (free alternative)
+
+# Game Database
+RAWG_API_KEY=...             # RAWG.io API key (free)
+```
+
+### Optional
+
+```env
+# Database (app works without this)
+MONGODB_URI=mongodb://...    # MongoDB connection string
+
+# AI Model
+AI_MODEL=gpt-4o-mini         # Default model
+```
+
+### Getting API Keys
+
+1. **OpenAI**: https://platform.openai.com/api-keys
+2. **GitHub**: https://github.com/settings/tokens
+3. **RAWG**: https://rawg.io/apidocs (20,000 free requests/month)
+
+---
+
+## 🚢 Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. Push to GitHub
+2. Import on [Vercel](https://vercel.com)
+3. Add environment variables
+4. Deploy!
+
+### Manual Deployment
+
+```bash
+npm run build
+npm start
+```
+
+---
+
+## 📖 API Endpoints
+
+### AI Endpoints
+- `POST /api/ai/recommend` - Game recommendations
+- `POST /api/ai/profile` - Gamer profile generation
+- `POST /api/ai/mood` - Mood-based suggestions
+- `GET /api/ai/health` - AI health check
+
+### Decision Engine
+- `POST /api/decision` - Smart game matching
+
+### Game Data
+- `GET /api/games` - Local game database
+- `GET /api/games/[id]` - Game details
+
+### RAWG Proxy
+- `GET /api/rawg/search` - Search games
+- `GET /api/rawg/game/[slug]` - Game details
+- `GET /api/rawg/trending` - Trending games
+- `GET /api/rawg/explore` - Explore with filters
+
+### Steam
+- `GET /api/steam/[appId]` - Steam game data
+
+See [API_REFERENCE.md](./API_REFERENCE.md) for complete documentation.
+
+---
+
+## 🎨 Screenshots
+
+### Home Page
+AI chat assistant and trending games section.
+
+### Decision Engine
+Smart game matching with 3D card animations.
+
+### Explore Page
+Browse 500,000+ games with advanced filters.
+
+### Game Details
+Comprehensive game information with screenshots and pricing.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 🙏 Acknowledgments
+
+- **RAWG.io** - Game database API
+- **OpenAI** - AI model
+- **GitHub Models** - Free AI access
+- **Vercel** - Hosting platform
+- **Next.js Team** - Amazing framework
+
+---
+
+## 📞 Support
+
+- 📖 [Documentation](./DOCUMENTATION.md)
+- 🐛 [Report Issues](https://github.com/your-repo/issues)
+- 💬 [Discussions](https://github.com/your-repo/discussions)
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] User authentication
+- [ ] Save favorite games
+- [ ] Game library management
+- [ ] Social features (friends, reviews)
+- [ ] Mobile app
+- [ ] More AI features
+
+---
+
+**Made with ❤️ by PixelVerse Team**
+
+**Happy Gaming! 🎮**
