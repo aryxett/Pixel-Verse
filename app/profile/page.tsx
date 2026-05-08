@@ -1,10 +1,10 @@
 import ClientOnly from "@/components/ClientOnly";
-import HomePageClient from "@/components/HomePageClient";
+import ProfileClient from "@/components/ProfileClient";
 
-export default function HomePage() {
+export default function ProfilePage() {
   return (
     <ClientOnly fallback={<div className="min-h-screen" />}>
-      <HomePageClient />
+      <ProfileClient />
     </ClientOnly>
   );
 }

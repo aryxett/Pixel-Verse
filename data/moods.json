@@ -1,0 +1,58 @@
+[
+  {
+    "id": "chill",
+    "label": "Chill",
+    "emoji": "😌",
+    "description": "Relaxed, low-stress gaming",
+    "color": "#10b981",
+    "gradient": "from-emerald-500 to-teal-600"
+  },
+  {
+    "id": "intense",
+    "label": "Intense",
+    "emoji": "🔥",
+    "description": "High-stakes, adrenaline-pumping",
+    "color": "#ef4444",
+    "gradient": "from-red-500 to-orange-600"
+  },
+  {
+    "id": "adventurous",
+    "label": "Adventurous",
+    "emoji": "🗺️",
+    "description": "Explore vast worlds",
+    "color": "#f59e0b",
+    "gradient": "from-amber-500 to-yellow-600"
+  },
+  {
+    "id": "competitive",
+    "label": "Competitive",
+    "emoji": "⚔️",
+    "description": "Ranked, PvP, leaderboards",
+    "color": "#7c3aed",
+    "gradient": "from-violet-500 to-purple-600"
+  },
+  {
+    "id": "creative",
+    "label": "Creative",
+    "emoji": "🎨",
+    "description": "Build, craft, express yourself",
+    "color": "#06b6d4",
+    "gradient": "from-cyan-500 to-blue-600"
+  },
+  {
+    "id": "social",
+    "label": "Social",
+    "emoji": "👥",
+    "description": "Play with friends",
+    "color": "#ec4899",
+    "gradient": "from-pink-500 to-rose-600"
+  },
+  {
+    "id": "focused",
+    "label": "Focused",
+    "emoji": "🎯",
+    "description": "Deep, skill-based challenges",
+    "color": "#3b82f6",
+    "gradient": "from-blue-500 to-indigo-600"
+  }
+]

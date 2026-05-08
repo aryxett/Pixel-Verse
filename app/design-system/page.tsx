@@ -1,10 +1,10 @@
 import ClientOnly from "@/components/ClientOnly";
-import HomePageClient from "@/components/HomePageClient";
+import DesignSystemClient from "@/components/DesignSystemClient";
 
-export default function HomePage() {
+export default function DesignSystemPage() {
   return (
     <ClientOnly fallback={<div className="min-h-screen" />}>
-      <HomePageClient />
+      <DesignSystemClient />
     </ClientOnly>
   );
 }
