@@ -35,7 +35,7 @@ export async function GET() {
     fetchRAWG("/games", { dates: `${last30Start},${fmt(today)}`, ordering: "-added" }),
     fetchRAWG("/games", { dates: `${thisWeekStart},${thisWeekEnd}`, ordering: "-added" }),
     fetchRAWG("/games", { dates: `${nextWeekStart},${nextWeekEnd}`, ordering: "-added" }),
-    fetchRAWG("/games", { dates: `${yearStart},${yearEnd}`, ordering: "-metacritic", metacritic: "80,100" }),
+    fetchRAWG("/games", { dates: `${yearStart},${yearEnd}`, ordering: "-rating" }),
     fetchRAWG("/games", { dates: "2025-01-01,2025-12-31", ordering: "-added" }),
     fetchRAWG("/games", { ordering: "-metacritic", metacritic: "90,100" }),
     fetchRAWG("/genres", { page_size: "20" }),

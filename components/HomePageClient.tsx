@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import AIChat from "@/components/AIChat";
 import TrendingSection from "@/components/TrendingSection";
 import DecisionEngine from "@/components/DecisionEngine";
+import SectionDivider from "@/components/SectionDivider";
 import { TrendingUp, Sparkles, Zap } from "lucide-react";
 
 export default function HomePageClient() {
@@ -11,6 +12,9 @@ export default function HomePageClient() {
     <div>
       {/* Hero */}
       <HeroSection />
+
+      {/* Divider */}
+      <SectionDivider />
 
       {/* Trending Games */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
@@ -33,9 +37,7 @@ export default function HomePageClient() {
       </section>
 
       {/* Divider */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="h-px" style={{ background: "linear-gradient(to right, transparent, rgba(124,58,237,0.3), transparent)" }} />
-      </div>
+      <SectionDivider />
 
       {/* AI Chat Section */}
       <section id="ai-chat" className="max-w-7xl mx-auto px-4 sm:px-6 py-16 scroll-mt-20">
@@ -99,6 +101,9 @@ export default function HomePageClient() {
           </div>
         </div>
       </section>
+
+      {/* Divider */}
+      <SectionDivider />
 
       {/* Decision Engine Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">

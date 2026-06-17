@@ -271,8 +271,7 @@ export default function ExploreSidebar({
         games={data.top.bestYear.games}
         active={activeSection === "bestYear"}
         onClick={() => onSectionChange("bestYear", {
-          ordering: "-metacritic",
-          metacritic: "80,100",
+          ordering: "-rating",
           dates: `${new Date().getFullYear()}-01-01,${fmtToday()}`,
         })}
         delay={0.15}

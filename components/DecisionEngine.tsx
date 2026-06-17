@@ -300,7 +300,7 @@ export default function DecisionEngine() {
   };
 
   return (
-    <div className="rounded-2xl border border-violet-500/20 overflow-hidden"
+    <div className="rounded-2xl border border-violet-500/20 overflow-hidden keep-dark"
       style={{ background: "rgba(10,10,18,0.85)", backdropFilter: "blur(20px)" }}>
 
       {/* Header */}

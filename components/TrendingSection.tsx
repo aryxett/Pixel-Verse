@@ -34,7 +34,7 @@ function LiveGameCard({ game, index }: { game: RAWGGameCard; index: number }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative"
+      className="group relative keep-dark"
     >
       <Link href={`/game/rawg/${game.id}`}>
         <div
@@ -51,7 +51,7 @@ function LiveGameCard({ game, index }: { game: RAWGGameCard; index: number }) {
 
           {/* Cover image */}
           <div className="relative h-48 overflow-hidden bg-slate-900">
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d14] via-[#0d0d14]/10 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-secondary)] via-[var(--bg-secondary)]/10 to-transparent z-10" />
             <motion.img
               src={game.image}
               alt={game.title}

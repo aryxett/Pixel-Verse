@@ -25,7 +25,7 @@ function DefaultCard({ game, index }: { game: Game; index: number }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative"
+      className="group relative keep-dark"
     >
       <Link href={`/game/${game.id}`}>
         <div className="relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 border border-white/[0.07] hover:border-violet-500/40"
@@ -41,7 +41,7 @@ function DefaultCard({ game, index }: { game: Game; index: number }) {
 
           {/* Cover */}
           <div className="relative h-52 overflow-hidden" style={{ backgroundColor: game.coverColor }} suppressHydrationWarning>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d14] via-[#0d0d14]/20 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-secondary)] via-[var(--bg-secondary)]/20 to-transparent z-10" />
             <motion.img
               src={game.image}
               alt={game.title}
@@ -111,7 +111,7 @@ function CompactCard({ game, index }: { game: Game; index: number }) {
       whileHover={{ x: 4 }}
     >
       <Link href={`/game/${game.id}`}>
-        <div className="flex items-center gap-3 p-3 rounded-xl border border-white/[0.06] hover:border-violet-500/30 transition-all cursor-pointer group"
+        <div className="flex items-center gap-3 p-3 rounded-xl border border-white/[0.06] hover:border-violet-500/30 transition-all cursor-pointer group keep-dark"
           style={{ background: "rgba(13,13,20,0.7)", backdropFilter: "blur(12px)" }}>
           <div className="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 border border-white/[0.06]"
             style={{ backgroundColor: game.coverColor }} suppressHydrationWarning>
@@ -138,7 +138,7 @@ function FeaturedCard({ game }: { game: Game }) {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.02 }}
-      className="group relative"
+      className="group relative keep-dark"
     >
       <Link href={`/game/${game.id}`}>
         <div className="relative h-80 rounded-2xl overflow-hidden cursor-pointer border border-white/[0.07] hover:border-violet-500/40 transition-all"

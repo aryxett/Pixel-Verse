@@ -124,7 +124,7 @@ export default function GameCardPro({
     setHovered(true);
     setPlaying(true);
     onHover?.(id);
-    hoverTimer.current = setTimeout(fetchTrailer, 350);
+    hoverTimer.current = setTimeout(fetchTrailer, 1000);
   };
 
   const handleMouseLeave = () => {

@@ -65,7 +65,7 @@ export default function AIChat() {
   };
 
   return (
-    <div className="flex flex-col rounded-2xl overflow-hidden border border-white/[0.07]"
+    <div className="flex flex-col rounded-2xl overflow-hidden border border-white/[0.07] keep-dark"
       style={{ background: "rgba(10,10,18,0.85)", backdropFilter: "blur(20px)", maxHeight: "580px" }}>
 
       {/* Header */}

@@ -36,6 +36,13 @@ export interface RAWGGame {
   }>;
   esrb_rating?: { id: number; name: string; slug: string } | null;
   website?: string;
+  achievements_count?: number;
+  additions_count?: number;
+  game_series_count?: number;
+  reviews_count?: number;
+  suggestions_count?: number;
+  added?: number;
+  added_by_status?: Record<string, number> | null;
 }
 
 export interface RAWGReview {
@@ -143,21 +150,37 @@ export function rawgRatingTo10(rating: number): number {
 }
 
 /**
+ * Get optimized cropped image URL from RAWG CDN
+ */
+export function getOptimizedImage(url: string | null): string {
+  if (!url) return "/placeholder-game.svg";
+  const target = "media/";
+  const index = url.indexOf(target);
+  if (index !== -1) {
+    const start = url.slice(0, index + target.length);
+    const end = url.slice(index + target.length);
+    if (end.startsWith("crop/")) return url;
+    return `${start}crop/600/400/${end}`;
+  }
+  return url;
+}
+
+/**
  * Map RAWG game to our Game format
  */
 export function rawgToGame(g: RAWGGame) {
   return {
     id: g.slug,
     title: g.name,
-    genre: g.genres.map((gen) => gen.name),
-    platform: g.platforms.map((p) => p.platform.name),
+    genre: g.genres?.map((gen) => gen.name) || [],
+    platform: g.platforms?.map((p) => p.platform.name) || [],
     rating: rawgRatingTo10(g.rating),
     metacritic: g.metacritic,
     releaseYear: g.released ? new Date(g.released).getFullYear() : 0,
     developer: g.developers?.[0]?.name || "Unknown",
     publisher: g.publishers?.[0]?.name || "Unknown",
     description: g.description_raw?.slice(0, 300) || "",
-    image: g.background_image || "",
+    image: getOptimizedImage(g.background_image),
     coverColor: "#1a1a2e",
     tags: g.tags?.slice(0, 6).map((t) => t.slug) || [],
     mood: [],

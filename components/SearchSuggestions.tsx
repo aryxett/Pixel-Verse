@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Star, Search, TrendingUp } from "lucide-react";
+import { Star, Search, TrendingUp, Layers, Flame, Gamepad2 } from "lucide-react";
 
 interface Suggestion {
   slug: string;
@@ -12,6 +12,7 @@ interface Suggestion {
   rating: number;
   genre: string[];
   metacritic: number | null;
+  relation?: "match" | "series" | "similar";
 }
 
 interface Props {
@@ -30,8 +31,10 @@ export default function SearchSuggestions({ query, genre, onSelect, open, onClos
 
   useEffect(() => {
     if (!open || query.length < 2) {
-      setSuggestions([]);
-      return;
+      const timer = setTimeout(() => {
+        setSuggestions([]);
+      }, 0);
+      return () => clearTimeout(timer);
     }
 
     if (debounceRef.current) clearTimeout(debounceRef.current);
@@ -60,6 +63,66 @@ export default function SearchSuggestions({ query, genre, onSelect, open, onClos
   }, [onClose]);
 
   if (!open) return null;
+
+  const matches = suggestions.filter((s) => !s.relation || s.relation === "match");
+  const series = suggestions.filter((s) => s.relation === "series");
+  const similar = suggestions.filter((s) => s.relation === "similar");
+  const hasMultipleSections = series.length > 0 || similar.length > 0;
+
+  const renderSuggestionItem = (s: Suggestion, globalIndex: number) => (
+    <motion.div
+      key={s.slug}
+      initial={{ opacity: 0, x: -8 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: globalIndex * 0.03 }}
+    >
+      <Link
+        href={`/game/rawg/${s.slug}`}
+        onClick={() => { onSelect(s.slug, s.title); onClose(); }}
+        className="flex items-center gap-3 px-4 py-2.5 hover:bg-white/[0.04] transition-colors group"
+        style={{ textDecoration: "none" }}
+      >
+        {/* Thumbnail */}
+        <div className="w-14 h-9 rounded-lg overflow-hidden flex-shrink-0 bg-slate-800">
+          {s.image && (
+            <img src={s.image} alt={s.title}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+          )}
+        </div>
+
+        {/* Info */}
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-semibold text-slate-200 group-hover:text-violet-300 transition-colors truncate">
+            {s.title}
+          </p>
+          <div className="flex items-center gap-2 mt-0.5">
+            {s.genre.slice(0, 2).map((g) => (
+              <span key={g} className="text-[10px] text-slate-500 font-medium">{g}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Rating */}
+        <div className="flex items-center gap-1 flex-shrink-0">
+          {s.metacritic ? (
+            <span className="text-xs font-black px-1.5 py-0.5 rounded"
+              style={{
+                background: s.metacritic >= 75 ? "#66cc33" : s.metacritic >= 50 ? "#ffcc33" : "#ff4444",
+                color: s.metacritic >= 50 ? "#000" : "#fff",
+              }}>
+              {s.metacritic}
+            </span>
+          ) : s.rating > 0 ? (
+            <div className="flex items-center gap-0.5 text-yellow-400 text-xs font-bold">
+              <Star className="w-3 h-3 fill-yellow-400" />
+              {s.rating}
+            </div>
+          ) : null}
+        </div>
+      </Link>
+    </motion.div>
+  );
 
   return (
     <div ref={containerRef} className="absolute top-full left-0 right-0 z-50 mt-2">
@@ -96,63 +159,49 @@ export default function SearchSuggestions({ query, genre, onSelect, open, onClos
               </div>
             )}
 
-            {/* Results */}
+            {/* Results grouped into sections */}
             {!loading && suggestions.length > 0 && (
-              <div className="py-1 max-h-80 overflow-y-auto">
-                {suggestions.map((s, i) => (
-                  <motion.div
-                    key={s.slug}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.03 }}
-                  >
-                    <Link
-                      href={`/game/rawg/${s.slug}`}
-                      onClick={() => { onSelect(s.slug, s.title); onClose(); }}
-                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-violet-500/8 transition-colors group"
-                      style={{ textDecoration: "none" }}
-                    >
-                      {/* Thumbnail */}
-                      <div className="w-14 h-9 rounded-lg overflow-hidden flex-shrink-0 bg-slate-800">
-                        {s.image && (
-                          <img src={s.image} alt={s.title}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
-                        )}
+              <div className="max-h-[450px] overflow-y-auto divide-y divide-white/[0.04]">
+                {/* Search Matches */}
+                {matches.length > 0 && (
+                  <div>
+                    {hasMultipleSections && (
+                      <div className="px-4 py-2 flex items-center gap-1.5 bg-white/[0.02] border-b border-white/[0.03]">
+                        <Gamepad2 className="w-3 h-3 text-violet-400" />
+                        <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase">Search Results</span>
                       </div>
+                    )}
+                    <div className="py-1">
+                      {matches.map((s, idx) => renderSuggestionItem(s, idx))}
+                    </div>
+                  </div>
+                )}
 
-                      {/* Info */}
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-slate-200 group-hover:text-violet-300 transition-colors truncate">
-                          {s.title}
-                        </p>
-                        <div className="flex items-center gap-2 mt-0.5">
-                          {s.genre.slice(0, 2).map((g) => (
-                            <span key={g} className="text-[10px] text-slate-600">{g}</span>
-                          ))}
-                        </div>
-                      </div>
+                {/* Series / Parts */}
+                {series.length > 0 && (
+                  <div>
+                    <div className="px-4 py-2 flex items-center gap-1.5 bg-white/[0.02] border-b border-white/[0.03]">
+                      <Layers className="w-3 h-3 text-cyan-400" />
+                      <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase">Franchise & Series Parts</span>
+                    </div>
+                    <div className="py-1">
+                      {series.map((s, idx) => renderSuggestionItem(s, matches.length + idx))}
+                    </div>
+                  </div>
+                )}
 
-                      {/* Rating */}
-                      <div className="flex items-center gap-1 flex-shrink-0">
-                        {s.metacritic ? (
-                          <span className="text-xs font-black px-1.5 py-0.5 rounded"
-                            style={{
-                              background: s.metacritic >= 75 ? "#66cc33" : s.metacritic >= 50 ? "#ffcc33" : "#ff4444",
-                              color: s.metacritic >= 50 ? "#000" : "#fff",
-                            }}>
-                            {s.metacritic}
-                          </span>
-                        ) : s.rating > 0 ? (
-                          <div className="flex items-center gap-0.5 text-yellow-400 text-xs font-bold">
-                            <Star className="w-3 h-3 fill-yellow-400" />
-                            {s.rating}
-                          </div>
-                        ) : null}
-                      </div>
-                    </Link>
-                  </motion.div>
-                ))}
+                {/* Similar / Related */}
+                {similar.length > 0 && (
+                  <div>
+                    <div className="px-4 py-2 flex items-center gap-1.5 bg-white/[0.02] border-b border-white/[0.03]">
+                      <Flame className="w-3 h-3 text-pink-400" />
+                      <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase">Similar & Related Games</span>
+                    </div>
+                    <div className="py-1">
+                      {similar.map((s, idx) => renderSuggestionItem(s, matches.length + series.length + idx))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 

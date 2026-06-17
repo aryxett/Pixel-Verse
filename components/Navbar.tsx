@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Gamepad2, Compass, User, Zap, Menu, X, LogOut } from "lucide-react";
+import { Gamepad2, Compass, User, Zap, Menu, X, LogOut, Sun, Moon } from "lucide-react";
 import { clsx } from "clsx";
 import { useState } from "react";
 import { useSession, signOut } from "next-auth/react";
+import { useApp } from "@/app/providers";
 
 const navLinks = [
   { href: "/",        label: "Home",    icon: Zap },
@@ -18,6 +19,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { data: session } = useSession();
+  const { theme, toggleTheme } = useApp();
 
   return (
     <>
@@ -25,9 +27,9 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="sticky top-0 z-50"
+        className="sticky top-0 z-50 keep-dark"
       >
-        <div className="relative border-b border-white/[0.06] bg-[#050508]/80 backdrop-blur-2xl">
+        <div className="relative border-b border-slate-200/10 dark:border-white/[0.06] bg-[var(--bg-glass)] backdrop-blur-2xl">
           {/* Top neon line */}
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/60 to-transparent" />
 
@@ -146,6 +148,22 @@ export default function Navbar() {
                 )}
               </div>
 
+              {/* Theme switcher */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={toggleTheme}
+                className="w-9 h-9 rounded-xl flex items-center justify-center border border-slate-200/10 dark:border-white/[0.06] text-slate-400 hover:text-slate-200 transition-all cursor-pointer mr-1"
+                style={{ background: "var(--bg-glass)" }}
+                title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              >
+                {theme === "dark" ? (
+                  <Moon className="w-4 h-4 text-violet-400" />
+                ) : (
+                  <Sun className="w-4 h-4 text-amber-500" />
+                )}
+              </motion.button>
+
               {/* Mobile menu */}
               <motion.button
                 whileTap={{ scale: 0.9 }}
@@ -166,7 +184,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden sticky top-16 z-40 overflow-hidden border-b border-white/[0.06] bg-[#050508]/95 backdrop-blur-2xl"
+            className="md:hidden sticky top-16 z-40 overflow-hidden border-b border-slate-200/10 dark:border-white/[0.06] bg-[var(--bg-glass)] backdrop-blur-2xl"
           >
             <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
               {navLinks.map(({ href, label, icon: Icon }) => {

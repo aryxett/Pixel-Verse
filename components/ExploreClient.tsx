@@ -165,7 +165,7 @@ export default function ExploreClient() {
     <div className="flex min-h-screen" style={{ marginTop: "-1px" }}>
 
         {/* ── LEFT SIDEBAR ── */}
-        <aside className="hidden lg:block w-60 flex-shrink-0 border-r border-white/[0.05]"
+        <aside className="hidden lg:block w-60 flex-shrink-0 border-r border-white/[0.05] keep-dark"
           style={{ background: "rgba(8,8,14,0.95)" }}>
           <div className="sticky top-16 overflow-y-auto" style={{ maxHeight: "calc(100vh - 64px)" }}>
             <ExploreSidebar

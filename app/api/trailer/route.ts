@@ -21,6 +21,37 @@ async function getRawgTrailer(slug: string): Promise<string | null> {
 }
 
 /* ── YouTube Data API v3 ── */
+function isVideoRelatedToGame(videoTitle: string, gameTitle: string): boolean {
+  const normalize = (str: string) =>
+    str
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const normVideo = normalize(videoTitle);
+  const normGame = normalize(gameTitle);
+
+  if (normVideo.includes(normGame)) return true;
+
+  const mainTitlePart = gameTitle.split(/[:\-\(]/)[0].trim();
+  const normMain = normalize(mainTitlePart);
+  if (normMain.length > 0 && normVideo.includes(normMain)) return true;
+
+  const STOP_WORDS = new Set(["the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", "with", "is", "it", "by", "from", "as"]);
+  let gameWords = normMain.split(" ").filter((w) => w.length > 0 && !STOP_WORDS.has(w));
+  
+  if (gameWords.length === 0) {
+    gameWords = normMain.split(" ").filter((w) => w.length > 0);
+  }
+
+  if (gameWords.length > 0) {
+    return gameWords.every((w) => normVideo.includes(w));
+  }
+
+  return false;
+}
+
 async function getYouTubeVideoId(gameTitle: string): Promise<string | null> {
   if (!YT_KEY) return null;
   try {
@@ -33,11 +64,23 @@ async function getYouTubeVideoId(gameTitle: string): Promise<string | null> {
     const data = await res.json();
     const items = data.items || [];
     if (!items.length) return null;
-    // Pick first result that has "trailer" or "official" in title
-    const best = items.find((item: any) => {
+
+    interface YouTubeSearchItem {
+      snippet: { title: string };
+      id: { videoId: string };
+    }
+
+    const relatedItems = items.filter((item: YouTubeSearchItem) => 
+      isVideoRelatedToGame(item.snippet.title, gameTitle)
+    );
+
+    if (relatedItems.length === 0) return null;
+
+    const best = relatedItems.find((item: YouTubeSearchItem) => {
       const t = item.snippet.title.toLowerCase();
       return t.includes("trailer") || t.includes("official");
-    }) || items[0];
+    }) || relatedItems[0];
+
     return best?.id?.videoId || null;
   } catch { return null; }
 }

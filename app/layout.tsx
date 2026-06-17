@@ -33,7 +33,7 @@ export default function RootLayout({
             {/* Navbar */}
             <ClientOnly
               fallback={
-                <div className="sticky top-0 z-50 h-16 border-b border-white/[0.06] bg-[#050508]/80" />
+                <div className="sticky top-0 z-50 h-16 border-b border-slate-200/10 dark:border-white/[0.06] bg-[var(--bg-glass)] keep-dark" />
               }
             >
               <Navbar />
