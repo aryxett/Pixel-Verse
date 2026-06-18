@@ -1,0 +1,54 @@
+.site-footer { 
+  background: var(--surface-void); 
+  border-top: 1px solid var(--border-subtle); 
+  padding: var(--space-16) var(--space-10) var(--space-8); 
+}
+.site-footer__top { 
+  display: grid; 
+  grid-template-columns: 1.6fr 1fr 1fr 1fr; 
+  gap: var(--space-12); 
+  max-width: 1440px; 
+  margin: 0 auto; 
+}
+.site-footer__tagline { 
+  color: var(--text-tertiary); 
+  font-size: var(--text-sm); 
+  margin: var(--space-3) 0 var(--space-5); 
+  max-width: 280px; 
+  line-height: 1.5;
+}
+.site-footer__socials { display: flex; gap: var(--space-3); }
+.site-footer__social-icon {
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); color: var(--text-secondary);
+  text-decoration: none;
+}
+.site-footer__social-icon:hover { border-color: var(--border-accent); color: var(--accent-300); }
+.site-footer__column h4 { font-size: var(--text-sm); margin-bottom: var(--space-4); color: var(--text-primary); font-weight: 600; }
+.site-footer__column ul { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); padding: 0; margin: 0; }
+.site-footer__column a { font-size: var(--text-sm); color: var(--text-tertiary); text-decoration: none; }
+.site-footer__column a:hover { color: var(--text-primary); }
+.site-footer__bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 1440px; margin: var(--space-12) auto 0; padding-top: var(--space-6);
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--text-xs); color: var(--text-tertiary);
+}
+.site-footer__badge { display: inline-flex; align-items: center; gap: 6px; }
+.site-footer__badge-pulse {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--score-green-400);
+  animation: badgePulse 2.4s ease-in-out infinite;
+}
+@keyframes badgePulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+@media (max-width: 768px) {
+  .site-footer__top {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .site-footer__bottom {
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+}

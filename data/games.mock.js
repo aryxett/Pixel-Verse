@@ -1,0 +1,305 @@
+export const MASTER_GAME_DATABASE = [
+  {
+    id: "elden-ring",
+    title: "Elden Ring",
+    year: 2022,
+    genre: "Action / RPG",
+    tag: "MUST PLAY",
+    description: "FromSoftware's open-world masterpiece achieves near-perfection, merging breathtaking exploration mechanics with the studio's signature gameplay challenge.",
+    platforms: ["PC", "PS5", "Xbox Series X/S", "PS4", "Xbox One"],
+    criticScore: 95,
+    userScore: 8.8,
+    coverLandscape: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/capsule_616x353.jpg",
+    coverPortrait: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/library_600x900.jpg",
+    youtubeId: "E3Huy2cdih0",
+    accentTheme: { color: "#8b5cf6", glow: "#fb923c", lightIntensity: 3.2 },
+    playtime: "60-100h",
+    multiplayer: false,
+    tags: ["RPG", "Action"],
+  },
+  {
+    id: "cyberpunk-2077",
+    title: "Cyberpunk 2077",
+    year: 2020,
+    genre: "Action / RPG",
+    tag: "REDEFINED",
+    description: "A story-driven open world RPG set in Night City, a megalopolis obsessed with power, glamour, and unrelenting body modification.",
+    platforms: ["PC", "PS5", "Xbox Series X/S", "PS4", "Xbox One"],
+    criticScore: 86,
+    userScore: 8.4,
+    coverLandscape: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/capsule_616x353.jpg",
+    coverPortrait: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/library_600x900.jpg",
+    youtubeId: "8X2kIfS6fb8",
+    accentTheme: { color: "#38bdf8", glow: "#a78bfa", lightIntensity: 2.6 },
+    playtime: "50-80h",
+    multiplayer: false,
+    tags: ["RPG", "Action"],
+  },
+  {
+    id: "007-first-light",
+    title: "007 First Light",
+    year: 2026,
+    genre: "Action / Stealth",
+    tag: "MOST ANTICIPATED",
+    description: "Step into the shoes of a young James Bond and earn your 00 status in this fully original origin story from the creators of HITMAN.",
+    platforms: ["PC", "PS5", "Xbox Series X/S"],
+    criticScore: 92,
+    userScore: 9.0,
+    coverLandscape: "https://images.igdb.com/igdb/image/upload/t_screenshot_big/scbghe.jpg",
+    coverPortrait: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2x9p.jpg",
+    youtubeId: "gDvbGANDH4E",
+    accentTheme: { color: "#d4af37", glow: "#fde047", lightIntensity: 3.0 },
+    playtime: "20-40h",
+    multiplayer: false,
+    tags: ["Stealth", "Action"],
+  },
+  {
+    id: "valorant",
+    title: "Valorant",
+    year: 2020,
+    genre: "FPS / Tactical Shooter",
+    tag: "ESPORTS FAVORITE",
+    description: "A 5v5 character-based tactical shooter where precise gunplay meets unique agent abilities in high-stakes competitive play.",
+    platforms: ["PC"],
+    criticScore: 80,
+    userScore: 8.7,
+    coverLandscape: "https://images.igdb.com/igdb/image/upload/t_screenshot_big/sc8f2h.jpg",
+    coverPortrait: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2mvt.jpg",
+    youtubeId: "e_E9W2vsRbQ",
+    accentTheme: { color: "#ef4444", glow: "#f97316", lightIntensity: 2.8 },
+    playtime: "Unlimited",
+    multiplayer: true,
+    tags: ["FPS", "Tactical Shooter"],
+  },
+  {
+    id: "minecraft",
+    title: "Minecraft",
+    year: 2011,
+    genre: "Sandbox / Survival",
+    tag: "ALL-TIME CLASSIC",
+    description: "A game about placing blocks and going on adventures. Explore randomly generated worlds and build everything from the simplest of homes to the grandest of castles.",
+    platforms: ["PC", "PS5", "Xbox Series X/S", "Mobile", "Switch"],
+    criticScore: 93,
+    userScore: 9.2,
+    coverLandscape: "https://images.igdb.com/igdb/image/upload/t_screenshot_big/sc7l3o.jpg",
+    coverPortrait: "https://images.igdb.com/igdb/image/upload/t_cover_big/co49x5.jpg",
+    youtubeId: "MmB9b5njVbA",
+    accentTheme: { color: "#4ade80", glow: "#22c55e", lightIntensity: 2.4 },
+    playtime: "Unlimited",
+    multiplayer: true,
+    tags: ["Sandbox", "Survival"],
+  },
+  {
+    id: "black-myth-wukong",
+    title: "Black Myth: Wukong",
+    year: 2024,
+    genre: "Action / Souls-like",
+    tag: "MYTHIC EPIC",
+    description: "An action RPG rooted in Chinese mythology. The story is based on Journey to the West, one of the Four Great Classical Novels of Chinese literature.",
+    platforms: ["PC", "PS5"],
+    criticScore: 94,
+    userScore: 9.2,
+    coverLandscape: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/capsule_616x353.jpg",
+    coverPortrait: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/library_600x900.jpg",
+    youtubeId: "pnSsgRJmsCc",
+    accentTheme: { color: "#f59e0b", glow: "#ef4444", lightIntensity: 3.0 },
+    playtime: "30-50h",
+    multiplayer: false,
+    tags: ["Action", "Souls-like"],
+  },
+  {
+    id: "helldivers-2",
+    title: "Helldivers 2",
+    year: 2024,
+    genre: "Co-op / Shooter",
+    tag: "FOR DEMOCRACY",
+    description: "A 3rd person squad-based shooter that sees the elite forces of the Helldivers battling to win an intergalactic struggle to rid the galaxy of rising alien threats.",
+    platforms: ["PC", "PS5"],
+    criticScore: 91,
+    userScore: 8.8,
+    coverLandscape: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553850/capsule_616x353.jpg",
+    coverPortrait: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553850/library_600x900.jpg",
+    youtubeId: "Y7jx1L-PzL0",
+    accentTheme: { color: "#eab308", glow: "#22c55e", lightIntensity: 2.8 },
+    playtime: "Unlimited",
+    multiplayer: true,
+    tags: ["Co-op", "Shooter"],
+  },
+  {
+    id: "palworld",
+    title: "Palworld",
+    year: 2024,
+    genre: "Survival / Crafting",
+    tag: "SURVIVAL HIT",
+    description: "Fight, farm, build and work alongside mysterious creatures called 'Pals' in this completely new multiplayer, open world survival and crafting game!",
+    platforms: ["PC", "Xbox Series X/S"],
+    criticScore: 89,
+    userScore: 8.5,
+    coverLandscape: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1623730/capsule_616x353.jpg",
+    coverPortrait: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1623730/library_600x900.jpg",
+    youtubeId: "Wpe_B6_U4x8",
+    accentTheme: { color: "#3b82f6", glow: "#10b981", lightIntensity: 2.5 },
+    playtime: "Unlimited",
+    multiplayer: true,
+    tags: ["Survival", "Crafting"],
+  },
+  {
+    id: "hades-ii",
+    title: "Hades II",
+    year: 2024,
+    genre: "Rogue-like / Action",
+    tag: "CRITICALLY ACCLAIMED",
+    description: "Battle beyond the Underworld using dark sorcery to take on the Titan of Time in this bewitching sequel to the award-winning rogue-like dungeon crawler.",
+    platforms: ["PC"],
+    criticScore: 97,
+    userScore: 9.6,
+    coverLandscape: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/capsule_616x353.jpg",
+    coverPortrait: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/library_600x900.jpg",
+    youtubeId: "l-iHRmE3_x8",
+    accentTheme: { color: "#10b981", glow: "#059669", lightIntensity: 3.1 },
+    playtime: "20-80h",
+    multiplayer: false,
+    tags: ["Rogue-like", "Action"],
+  },
+  {
+    id: "dragons-dogma-2",
+    title: "Dragon's Dogma 2",
+    year: 2024,
+    genre: "RPG / Open World",
+    tag: "EPIC FANTASY",
+    description: "A single player, narrative driven action-RPG that challenges the players to choose their own experience – from the appearance of their Arisen, their vocation, their party, and more.",
+    platforms: ["PC", "PS5", "Xbox Series X/S"],
+    criticScore: 86,
+    userScore: 8.4,
+    coverLandscape: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2054970/capsule_616x353.jpg",
+    coverPortrait: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2054970/library_600x900.jpg",
+    youtubeId: "8uM-21_6xJg",
+    accentTheme: { color: "#dc2626", glow: "#991b1b", lightIntensity: 2.9 },
+    playtime: "40-80h",
+    multiplayer: false,
+    tags: ["RPG", "Open World"],
+  }
+];
+
+function getDailyGames() {
+  // Use days since Unix epoch as a deterministic daily seed
+  // The same 5 games will show for all users on a given day and rotate at midnight GMT
+  const dayIndex = Math.floor(Date.now() / 86400000);
+  const result = [];
+  const poolSize = MASTER_GAME_DATABASE.length;
+  
+  for (let i = 0; i < 5; i++) {
+    const index = (dayIndex + i) % poolSize;
+    result.push(MASTER_GAME_DATABASE[index]);
+  }
+  return result;
+}
+
+const dailyRoster = getDailyGames();
+
+export const HERO_SLIDES = dailyRoster.map(game => ({
+  id: game.id,
+  title: game.title,
+  year: game.year,
+  genre: game.genre,
+  tag: game.tag,
+  description: game.description,
+  platforms: game.platforms,
+  criticScore: game.criticScore,
+  userScore: game.userScore,
+  cover: game.coverLandscape,
+  youtubeId: game.youtubeId,
+  accentTheme: game.accentTheme
+}));
+
+export const TRENDING_GAMES = dailyRoster.map((game, idx) => ({
+  id: game.id,
+  title: game.title,
+  description: game.description,
+  cover: game.coverPortrait,
+  rating: Number((game.criticScore / 10).toFixed(1)),
+  aiScore: game.criticScore - (game.id.length % 5), // slightly varied but deterministic pseudo-AI score
+  playtime: game.playtime,
+  multiplayer: game.multiplayer,
+  tags: game.tags,
+  featured: idx === 0, // First game is always the featured 2x2 card
+}));
+
+export const ADVISOR_SUGGESTED_PROMPTS = [
+  "What game should I play if I love Elden Ring?",
+  "I want something relaxing tonight",
+  "Best co-op games for friends?",
+];
+
+export const ADVISOR_FEATURES = [
+  {
+    id: "private",
+    icon: "Lock",
+    title: "100% Private",
+    description: "Powered by GitHub Models. Your queries stay secure.",
+    accent: "violet",
+  },
+  {
+    id: "context",
+    icon: "Brain",
+    title: "Context-Aware",
+    description: "Understands your gaming history, mood, and preferences.",
+    accent: "ember",
+  },
+  {
+    id: "instant",
+    icon: "Zap",
+    title: "Instant Results",
+    description: "GPT-4o-mini delivers fast, accurate recommendations.",
+    accent: "green",
+  },
+  {
+    id: "gamer-first",
+    icon: "Gamepad2",
+    title: "Gamer-First",
+    description: "Built by gamers. Understands genres, mechanics, and vibes.",
+    accent: "blue",
+  },
+];
+
+export const DECISION_ENGINE_OPTIONS = {
+  timeAvailable: [
+    { value: 30, label: "30 min" },
+    { value: 60, label: "1 hour" },
+    { value: 120, label: "2 hours" },
+    { value: 180, label: "3 hours" },
+    { value: 300, label: "5+ hours" },
+  ],
+  mood: [
+    { value: "chill", label: "Chill", icon: "Coffee" },
+    { value: "action", label: "Action", icon: "Swords" },
+    { value: "competitive", label: "Competitive", icon: "Trophy" },
+    { value: "adventurous", label: "Adventurous", icon: "Compass" },
+    { value: "creative", label: "Creative", icon: "Palette" },
+    { value: "social", label: "Social", icon: "Users" },
+    { value: "horror", label: "Horror", icon: "Ghost" },
+  ],
+  device: [
+    { value: "low-end", label: "Low-End", sublabel: "Older PC / Budget" },
+    { value: "mid-range", label: "Mid-Range", sublabel: "PS4 / Mid PC" },
+    { value: "high-end", label: "High-End", sublabel: "PS5 / RTX PC" },
+  ],
+};
+
+export const HOW_IT_WORKS_STEPS = [
+  {
+    number: "01",
+    title: "Set your constraints",
+    description: "Tell us how much time you have, your current mood, and what device you're on.",
+  },
+  {
+    number: "02",
+    title: "AI analyzes your profile",
+    description: "GPT-4o-mini cross-references your inputs against our game database to find the perfect match.",
+  },
+  {
+    number: "03",
+    title: "Get your recommendation",
+    description: "Receive a tailored game pick with a match score and explanation — no generic answers.",
+  },
+];

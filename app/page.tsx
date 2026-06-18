@@ -1,10 +1,19 @@
-import ClientOnly from "@/components/ClientOnly";
-import HomePageClient from "@/components/HomePageClient";
+import HeroSection from "@/components/hero/HeroSection";
+import TrendingGrid from "@/components/cards/TrendingGrid";
+import AdvisorSection from "@/components/advisor/AdvisorSection";
+import DecisionEngineSection from "@/components/decision-engine/DecisionEngineSection";
+import SectionDivider from "@/components/layout/SectionDivider";
 
 export default function HomePage() {
   return (
-    <ClientOnly fallback={<div className="min-h-screen" />}>
-      <HomePageClient />
-    </ClientOnly>
+    <>
+      <HeroSection />
+      <SectionDivider />
+      <TrendingGrid />
+      <SectionDivider />
+      <AdvisorSection />
+      <SectionDivider />
+      <DecisionEngineSection />
+    </>
   );
 }

@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import Navbar from "@/components/Navbar";
-import ClientOnly from "@/components/ClientOnly";
+import Footer from "@/components/Footer";
+import CustomCursor from "@/components/layout/CustomCursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,25 +25,15 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
-      <body className="noise-overlay antialiased" suppressHydrationWarning>
+      <body className="antialiased" suppressHydrationWarning>
+        <CustomCursor />
         <Providers>
           <div className="relative min-h-screen flex flex-col">
-            {/* Grid background */}
-            <div className="fixed inset-0 grid-pattern pointer-events-none z-0" />
-
-            {/* Navbar */}
-            <ClientOnly
-              fallback={
-                <div className="sticky top-0 z-50 h-16 border-b border-slate-200/10 dark:border-white/[0.06] bg-[var(--bg-glass)] keep-dark" />
-              }
-            >
-              <Navbar />
-            </ClientOnly>
-
-            {/* Page content */}
+            <Navbar />
             <main className="relative z-10 flex-1">
               {children}
             </main>
+            <Footer />
           </div>
         </Providers>
       </body>

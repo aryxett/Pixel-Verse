@@ -1,0 +1,75 @@
+.navbar {
+  position: sticky; top: 0; z-index: var(--z-sticky-nav);
+  height: 88px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--space-10);
+  border-bottom: 1px solid transparent;
+  transition: none; /* GSAP-driven only */
+}
+.navbar__logo { display: flex; align-items: center; gap: var(--space-2); }
+.navbar__logo-name { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); display: block; }
+.navbar__logo-tag { font-size: 10px; letter-spacing: var(--tracking-widest); color: var(--text-tertiary); }
+.navbar__links { display: flex; gap: var(--space-8); list-style: none; }
+.navbar__link-item a {
+  position: relative; font-size: var(--text-sm); font-weight: 500; color: var(--text-secondary);
+  padding-bottom: 6px;
+  text-decoration: none;
+}
+.navbar__link-underline {
+  position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
+  background: var(--gradient-accent-text);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s var(--ease-signature, cubic-bezier(0.16,1,0.3,1));
+}
+.navbar__link-item a:hover .navbar__link-underline { transform: scaleX(1); }
+.navbar__actions { display: flex; align-items: center; gap: var(--space-3); }
+
+/* Buttons inside navbar */
+.btn-ghost-sm {
+  padding: 8px 16px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s;
+}
+.btn-ghost-sm:hover {
+  background: var(--surface-elevated);
+}
+
+.btn-primary-glow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, var(--accent-600), var(--accent-500));
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  box-shadow: var(--shadow-rim-violet);
+  transition: none; /* all motion handled by GSAP, not CSS transitions */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary-glow--sm {
+  padding: 8px 16px;
+  font-size: var(--text-sm);
+  box-shadow: 0 0 0 1px rgba(139,92,246,0.15), 0 0 12px rgba(139,92,246,0.12);
+}
+
+.navbar__theme-toggle {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.navbar__theme-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--border-accent);
+}
